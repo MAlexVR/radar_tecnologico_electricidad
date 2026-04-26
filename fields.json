@@ -1,0 +1,164 @@
+[
+  {
+    "codigo": "L01",
+    "linea": "Microrredes Inteligentes (Microgrids)",
+    "trl_range": "TRL 6–8",
+    "trl": 8,
+    "madurez": "Intermedia-madura (TRL 6-8). Horizonte: Corto plazo (2025-2028).",
+    "horizonte": "Corto plazo (2025-2028).",
+    "impacto": ". Dirección: Crecimiento fuerte. Madurez: Intermedia-madura (TRL 7-8). Horizonte: Corto plazo (2025-2028)."
+  },
+  {
+    "codigo": "L02",
+    "linea": "Sistemas de Almacenamiento de Energía (BESS)",
+    "trl_range": "TRL 7–9",
+    "trl": 9,
+    "madurez": "Intermedia-madura (TRL 6-8). Horizonte: Corto plazo (2025-2028).",
+    "horizonte": "Corto plazo (2025-2028).",
+    "impacto": ""
+  },
+  {
+    "codigo": "L03",
+    "linea": "Integración de Recursos Energéticos Distribuidos (DER)",
+    "trl_range": "TRL 5–8",
+    "trl": 8,
+    "madurez": "Emergente-intermedia (TRL 5-7). Horizonte: Corto-mediano (2025-2030).",
+    "horizonte": "Corto-mediano (2025-2030).",
+    "impacto": ""
+  },
+  {
+    "codigo": "L04",
+    "linea": "Generación de Energía Comunitaria",
+    "trl_range": "TRL 5–7",
+    "trl": 7,
+    "madurez": "Intermedia (TRL 6-7). Horizonte: Corto-mediano plazo (2025-2030).",
+    "horizonte": "Corto-mediano plazo (2025-2030).",
+    "impacto": "visual, externalidades) en decisión multicriterio, demostrando que retrofit comunitario genera co-beneficios cuantificables más allá del ahorro energético. Co-operative Energy (EP 2966747) demuestra modelo cooperativo tecnológicamente habilitado donde miembros eligen su mix energético. Tendencia hacia 'community energy-as-a-service': plataformas que gestionan generación, almacenamiento y gobernanza de comunidades energéticas sin requerir expertise técnico de los miembros. Blockchain para gobernanza transparente con votación tokenizada y distribución automatizada de beneficios. Digital platforms para onboarding de nuevos miembros y gestión administrativa simplificada. Dirección: Crecimiento moderado. Madurez: Emergente (TRL 4-6). Horizonte: Mediano plazo (2027-2032)."
+  },
+  {
+    "codigo": "L05",
+    "linea": "Sistemas Híbridos de Generación",
+    "trl_range": "TRL 6–8",
+    "trl": 8,
+    "madurez": "Intermedia-madura (TRL 6-8). Horizonte: Corto plazo (2025-2028).",
+    "horizonte": "Corto plazo (2025-2028).",
+    "impacto": ""
+  },
+  {
+    "codigo": "L06",
+    "linea": "Infraestructura de Medición Avanzada (AMI)",
+    "trl_range": "TRL 8–9",
+    "trl": 9,
+    "madurez": "tecnológica consolidada (TRL 9). Dirección del cambio: crecimiento estable de mercado con declive investigativo, lo que señala transición de I+D a despliegue masivo. Estado de madurez: madura. Horizonte temporal: corto plazo (2025–2027). Impacto esperado: estandarización global de protocolos de comunicación AMI, reducción de costos de hardware por economías de escala, e interoperabilidad multi-vendor como requisito regulatorio.",
+    "horizonte": "corto plazo (2025–2027). Impacto esperado: estandarización global de protocolos de comunicación AMI, reducción de costos de hardware por economías de escala, e interoperabilidad multi-vendor como requisito regulatorio.",
+    "impacto": "estandarización global de protocolos de comunicación AMI, reducción de costos de hardware por economías de escala, e interoperabilidad multi-vendor como requisito regulatorio."
+  },
+  {
+    "codigo": "L07",
+    "linea": "Sistemas SCADA y DMS Avanzados",
+    "trl_range": "TRL 7–9",
+    "trl": 9,
+    "madurez": "madura en funciones básicas (TRL 8–9), emergente en integración con PMUs distribuidas (TRL 6–7). Horizonte temporal: corto plazo (2025–2028). Impacto esperado: mejora de la observabilidad de la red de distribución al 100% mediante fusión de datos SCADA/PMU/AMI, habilitando operación en tiempo real de redes activas con alta penetración renovable.",
+    "horizonte": "corto plazo (2025–2028). Impacto esperado: mejora de la observabilidad de la red de distribución al 100% mediante fusión de datos SCADA/PMU/AMI, habilitando operación en tiempo real de redes activas con alta penetración renovable.",
+    "impacto": "mejora de la observabilidad de la red de distribución al 100% mediante fusión de datos SCADA/PMU/AMI, habilitando operación en tiempo real de redes activas con alta penetración renovable."
+  },
+  {
+    "codigo": "L08",
+    "linea": "Automatización y Autocuración (Self-healing)",
+    "trl_range": "TRL 6–8",
+    "trl": 8,
+    "madurez": "Tecnología en transición de demostración a despliegue temprano (TRL 6-7). Los métodos de localización de fallas de alta impedancia por admitancia transitoria de secuencia cero están validados en sistemas con puesta a tierra resonante (Li et al. 2022). Terminales DA con módulo de onda viajera ya comercializados en China (CN 219609109 U). El análisis basado en IA aún en fase de validación piloto.",
+    "horizonte": "Corto-mediano plazo (2-5 años). Tecnologías de onda viajera ya disponibles comercialmente; integración con IA predictiva esperada para 2027-2028.",
+    "impacto": "Alto. Permite reducir drásticamente tiempos de localización de fallas (de horas a segundos), mejora SAIDI/SAIFI, y habilita autocuración real. Especialmente crítico para redes rurales colombianas con alta dispersión geográfica y fallas de alta impedancia frecuentes."
+  },
+  {
+    "codigo": "L09",
+    "linea": "Gemelos Digitales (Digital Twins)",
+    "trl_range": "TRL 4–6",
+    "trl": 6,
+    "madurez": "",
+    "horizonte": "corto-mediano plazo (1-3 años para adopción en pilotos, 3-5 años para despliegue a escala). Impacto esperado: alto en procesos de planificación de red, simulación de contingencias y optimización de topología de distribución.",
+    "impacto": "alto en procesos de planificación de red, simulación de contingencias y optimización de topología de distribución."
+  },
+  {
+    "codigo": "L10",
+    "linea": "Plantas de Energía Virtuales (VPP)",
+    "trl_range": "TRL 6–8",
+    "trl": 8,
+    "madurez": "Tecnología en despliegue comercial temprano (TRL 7-8). Qin et al. (2023, eTransportation) documenta 4 componentes fundamentales de VPP: recursos inestables, agregadores, centros de gestión VPP y recursos ajustables. Patente US 10,635,056 B2 (Open Access Technology) demuestra sistema completo de registro, modelado, forecasting y despacho de activos DR/DER en VPP. Más de 32 proyectos VPP operativos en UK (6.160 MW, 50% RES), EDF Francia (>17 proyectos, >1.500 MW), Tesla VPP en South Australia (250 MW). Estándares: IEEE 2030.7 (Microgrid Controllers), IEC 61850-7-420 (DER Communication), OpenADR 2.0.",
+    "horizonte": "Corto plazo (1-3 años). Plataformas comerciales disponibles (Next Kraftwerke/Shell, AutoGrid, Enbala/Generac, Centrica).",
+    "impacto": "Muy alto. Habilita la monetización de activos distribuidos, proporciona flexibilidad al sistema eléctrico, y permite a prosumidores participar en mercados de energía. Para Colombia, representa la base tecnológica para implementar la regulación CREG de autogeneración y generación distribuida a escala."
+  },
+  {
+    "codigo": "L11",
+    "linea": "Sistemas de Gestión de Recursos Distribuidos (DERMS)",
+    "trl_range": "TRL 6–8",
+    "trl": 8,
+    "madurez": "Tecnología en despliegue comercial (TRL 7-8). GE GridOS DERMS desplegado en >50 utilities en EE.UU. y Europa. Schneider Electric EcoStruxure DERMS integrado con ADMS en operadores como National Grid y UK Power Networks. Oracle Utilities DERMS en operación con utilities japonesas y australianas. La patente US 10,635,056 B2 (Open Access Technology) demuestra un proceso completo de registro → modelado → forecasting → despacho → tuning de activos DER agregados. Qin et al. (2023) documenta la arquitectura de 4 componentes (recursos, agregadores, plataformas de gestión, centro de despacho) implementada en China con >32 proyectos VPP/DERMS. Estándares: IEEE 1547-2018 (Interconnection), IEC 61850-7-420 (DER Communication), IEEE 2030.5 (Smart Energy Profile), OpenADR 2.0.",
+    "horizonte": "Corto plazo (1-3 años). Plataformas maduras y comercialmente disponibles.",
+    "impacto": "Muy alto. Es la capa de software habilitante para toda la gestión de DER por parte del operador de red. Sin DERMS, la penetración de DER por encima del 15-20% se vuelve inmanejable. Para Colombia, donde la Resolución CREG 174/2021 habilita autogeneración y GD, el despliegue de DERMS en operadores como EPM, Celsia y Enel-Codensa será indispensable a medida que crezca la base instalada de paneles solares y BESS."
+  },
+  {
+    "codigo": "L12",
+    "linea": "Programas de Respuesta a la Demanda (Demand Response)",
+    "trl_range": "TRL 7–9",
+    "trl": 9,
+    "madurez": "TRL 8–9. Los programas TOU están ampliamente desplegados a nivel mundial (PJM, ERCOT, mercados europeos). CPP y RTP tienen adopción creciente con medidores AMI.",
+    "horizonte": "",
+    "impacto": ""
+  },
+  {
+    "codigo": "L13",
+    "linea": "Tecnologías Vehículo-a-Red (V2G / V2X)",
+    "trl_range": "TRL 5–7",
+    "trl": 7,
+    "madurez": "En transición (TRL 6-8). Horizonte: Corto-mediano plazo (2025-2030).",
+    "horizonte": "Corto-mediano plazo (2025-2030).",
+    "impacto": ""
+  },
+  {
+    "codigo": "L14",
+    "linea": "Infraestructura de Carga Inteligente",
+    "trl_range": "TRL 6–8",
+    "trl": 8,
+    "madurez": "Intermedia-madura (TRL 7-8). Horizonte: Corto plazo (2025-2027).",
+    "horizonte": "Corto plazo (2025-2027).",
+    "impacto": "'High'. Dirección: Crecimiento fuerte. Madurez: Intermedia-madura (TRL 7-8). Horizonte: Corto plazo (2025-2027)."
+  },
+  {
+    "codigo": "L15",
+    "linea": "Sistemas de Gestión de Energía en Edificios (BEMS)",
+    "trl_range": "TRL 6–8",
+    "trl": 8,
+    "madurez": "Intermedia (TRL 6-8). Horizonte: Corto plazo (2025-2028).",
+    "horizonte": "Corto plazo (2025-2028).",
+    "impacto": "(Horizonte 1). Dirección: Crecimiento fuerte. Madurez: Intermedia-madura (TRL 6-8). Horizonte: Corto plazo (2025-2027)."
+  },
+  {
+    "codigo": "L16",
+    "linea": "Domótica y Hogares Inteligentes",
+    "trl_range": "TRL 7–9",
+    "trl": 9,
+    "madurez": "Madura (TRL 7-9). Horizonte: Corto plazo (2025-2027).",
+    "horizonte": "Corto plazo (2025-2027).",
+    "impacto": "convergiendo con hogares prosumidores. Dirección: Crecimiento acelerado. Madurez: Emergente-intermedia (TRL 5-7 para ventanas PV; TRL 8-9 para solar rooftop + batería). Horizonte: Corto-mediano plazo (2025-2030)."
+  },
+  {
+    "codigo": "L17",
+    "linea": "Monitoreo No Intrusivo de Cargas (NILM)",
+    "trl_range": "TRL 6–8",
+    "trl": 8,
+    "madurez": "Intermedia-madura (TRL 6-8). Horizonte: Corto plazo (2025-2028).",
+    "horizonte": "Corto plazo (2025-2028).",
+    "impacto": ""
+  },
+  {
+    "codigo": "L18",
+    "linea": "Gobernanza y Privacidad de Datos",
+    "trl_range": "TRL 4–7",
+    "trl": 7,
+    "madurez": "TRL 4–6. Marcos conceptuales desarrollados, pilotos en EU (Data Governance Act 2022), EE.UU. (DOE DataGuard). En Colombia, marco incipiente sin reglamentación técnica detallada.",
+    "horizonte": "de consolidación: mediano plazo (3–5 años).",
+    "impacto": "s heterogéneos: las regulaciones de ahorro energético mejoran la transparencia (β=0,1512), mientras que las de residuos la reducen por costos de cumplimiento (β=−0,1082)."
+  }
+]
