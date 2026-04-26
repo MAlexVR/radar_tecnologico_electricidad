@@ -115,6 +115,78 @@ describe('UI Content — Electricidad CEET 2025-2035', () => {
     expect(manifest.background_color).toMatch(/^#/);
   });
 
+  // ── RadarChart Label Positioning ──
+  it('RadarChart should vertically center multi-line labels', () => {
+    const { container } = render(
+      <RadarChart
+        filteredTechs={[
+          {
+            id: 'T01',
+            name: 'Microrredes Inteligentes (Microgrids)',
+            nameLines: ['Microrredes Inteligentes', '(Microgrids)'],
+            code: 'L01',
+            sector: 0,
+            ring: 1,
+            angleOff: -8,
+            trl: 8,
+            desc: 'Test',
+            impact: 'Alto',
+            horizon: 'Corto',
+          },
+        ]}
+        selectedTech={null}
+        hoveredTech={null}
+        activeSectors={new Set([0, 1, 2, 3, 4])}
+        activeRings={new Set([0, 1, 2, 3])}
+        onSelect={() => {}}
+        onHover={() => {}}
+      />
+    );
+    const tspans = container.querySelectorAll('tspan');
+    // Find the first tspan of the technology label (should have dy="-0.6em" for 2 lines)
+    const labelTspans = Array.from(tspans).filter((t) =>
+      t.textContent?.includes('Microrredes')
+    );
+    expect(labelTspans.length).toBeGreaterThanOrEqual(1);
+    const firstTspan = labelTspans[0];
+    expect(firstTspan.getAttribute('dy')).toBe('-0.6em');
+  });
+
+  it('RadarChart should place single-line labels without tspan wrappers', () => {
+    const { container } = render(
+      <RadarChart
+        filteredTechs={[
+          {
+            id: 'T02',
+            name: 'BESS',
+            code: 'L02',
+            sector: 0,
+            ring: 0,
+            angleOff: 20,
+            trl: 9,
+            desc: 'Test',
+            impact: 'Alto',
+            horizon: 'Corto',
+          },
+        ]}
+        selectedTech={null}
+        hoveredTech={null}
+        activeSectors={new Set([0, 1, 2, 3, 4])}
+        activeRings={new Set([0, 1, 2, 3])}
+        onSelect={() => {}}
+        onHover={() => {}}
+      />
+    );
+    const textNodes = container.querySelectorAll('text');
+    const labelText = Array.from(textNodes).find((t) =>
+      t.textContent?.includes('BESS')
+    );
+    expect(labelText).toBeTruthy();
+    // Single-line label: no tspan children, no negative dy
+    expect(labelText!.querySelectorAll('tspan').length).toBe(0);
+    expect(labelText!.textContent).toBe('BESS');
+  });
+
   // ── TRL Consistency ──
   it('ring TRL labels should reflect actual data ranges', () => {
     // ADOPTAR (ring 0): actual data is TRL 9 (within 7-9 range)

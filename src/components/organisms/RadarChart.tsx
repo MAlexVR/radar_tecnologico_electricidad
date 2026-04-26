@@ -206,7 +206,7 @@ export const RadarChart = forwardRef<SVGSVGElement, RadarChartProps>(
               {/* Label — dark text for readability, vertically centered */}
               <text
                 x={pos.x}
-                y={pos.y + (tech.labelDy ?? (isActive ? 14 : 12))}
+                y={pos.y + (tech.labelDy ?? (isActive ? 18 : 16))}
                 textAnchor="middle"
                 fill={isActive ? "#1a1a2e" : "#3a3a5c"}
                 fontSize={isActive ? 11 : 9.5}

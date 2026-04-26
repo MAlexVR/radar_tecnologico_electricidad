@@ -118,7 +118,7 @@ describe('Radar Data Structure — Electricidad CEET 2025-2035', () => {
 
   // ── SPACING ──
   it('should distribute technologies in same (sector, ring) with minimum angular separation', () => {
-    const MIN_SEPARATION = 14; // degrees
+    const MIN_SEPARATION = 16; // degrees
     const groups = new Map<string, Technology[]>();
     for (const tech of TECHNOLOGIES) {
       const key = `${tech.sector}-${tech.ring}`;
@@ -143,6 +143,26 @@ describe('Radar Data Structure — Electricidad CEET 2025-2035', () => {
       expect(tech.angleOff).toBeGreaterThanOrEqual(-30);
       expect(tech.angleOff).toBeLessThanOrEqual(30);
     }
+  });
+
+  it('should have exact angleOff values for known crowded groups', () => {
+    // D1 PROBAR (sector 0, ring 1): 4 technologies
+    const d1Trial = TECHNOLOGIES.filter((t) => t.sector === 0 && t.ring === 1)
+      .map((t) => t.angleOff)
+      .sort((a, b) => a - b);
+    expect(d1Trial).toEqual([-24, -8, 8, 24]);
+
+    // D2 ADOPTAR (sector 1, ring 0): 2 technologies
+    const d2Adopt = TECHNOLOGIES.filter((t) => t.sector === 1 && t.ring === 0)
+      .map((t) => t.angleOff)
+      .sort((a, b) => a - b);
+    expect(d2Adopt).toEqual([-20, 20]);
+
+    // D4 PROBAR (sector 3, ring 1): 4 technologies
+    const d4Trial = TECHNOLOGIES.filter((t) => t.sector === 3 && t.ring === 1)
+      .map((t) => t.angleOff)
+      .sort((a, b) => a - b);
+    expect(d4Trial).toEqual([-24, -8, 8, 24]);
   });
 
   // ── EXCLUDED ──
