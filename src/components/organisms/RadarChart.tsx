@@ -203,25 +203,21 @@ export const RadarChart = forwardRef<SVGSVGElement, RadarChartProps>(
                 strokeWidth={isActive ? 2.5 : 1.5}
                 opacity={isActive ? 1 : 0.85}
               />
-              {/* Label — dark text for readability, vertically centered */}
+              {/* Label — dark text for readability, placed below the dot */}
               <text
                 x={pos.x}
-                y={pos.y + (tech.labelDy ?? (isActive ? 18 : 16))}
+                y={pos.y + (tech.labelDy ?? (isActive ? 20 : 17))}
                 textAnchor="middle"
                 fill={isActive ? "#1a1a2e" : "#3a3a5c"}
                 fontSize={isActive ? 11 : 9.5}
                 fontWeight={isActive ? 700 : 500}
               >
                 {tech.nameLines
-                  ? (() => {
-                      const lineCount = tech.nameLines.length;
-                      const initialDy = -((lineCount - 1) * 1.2) / 2;
-                      return tech.nameLines.map((line: string, i: number) => (
-                        <tspan key={i} x={pos.x} dy={i === 0 ? `${initialDy}em` : "1.2em"}>
-                          {line}
-                        </tspan>
-                      ));
-                    })()
+                  ? tech.nameLines.map((line: string, i: number) => (
+                      <tspan key={i} x={pos.x} dy={i === 0 ? 0 : "1.2em"}>
+                        {line}
+                      </tspan>
+                    ))
                   : tech.name}
               </text>
             </g>

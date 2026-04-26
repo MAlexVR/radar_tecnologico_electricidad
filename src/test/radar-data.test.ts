@@ -165,6 +165,28 @@ describe('Radar Data Structure — Electricidad CEET 2025-2035', () => {
     expect(d4Trial).toEqual([-24, -8, 8, 24]);
   });
 
+  it('should center solitary technologies at angleOff=0', () => {
+    // T02 BESS: alone in D1 ADOPTAR
+    const t02 = TECHNOLOGIES.find((t) => t.id === 'T02');
+    expect(t02!.angleOff).toBe(0);
+
+    // T08 Self-healing: alone in D2 PROBAR
+    const t08 = TECHNOLOGIES.find((t) => t.id === 'T08');
+    expect(t08!.angleOff).toBe(0);
+
+    // T09 Digital Twins: alone in D2 EVALUAR
+    const t09 = TECHNOLOGIES.find((t) => t.id === 'T09');
+    expect(t09!.angleOff).toBe(0);
+
+    // T16 Domótica: alone in D4 ADOPTAR
+    const t16 = TECHNOLOGIES.find((t) => t.id === 'T16');
+    expect(t16!.angleOff).toBe(0);
+
+    // T18 Gobernanza: alone in D5 EVALUAR
+    const t18 = TECHNOLOGIES.find((t) => t.id === 'T18');
+    expect(t18!.angleOff).toBe(0);
+  });
+
   // ── EXCLUDED ──
   it('should define EXCLUDED_TECHNOLOGIES as an array', () => {
     expect(Array.isArray(EXCLUDED_TECHNOLOGIES)).toBe(true);

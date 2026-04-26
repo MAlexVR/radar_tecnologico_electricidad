@@ -116,7 +116,7 @@ describe('UI Content — Electricidad CEET 2025-2035', () => {
   });
 
   // ── RadarChart Label Positioning ──
-  it('RadarChart should vertically center multi-line labels', () => {
+  it('RadarChart should place multi-line labels below the dot with dy=0 on first line', () => {
     const { container } = render(
       <RadarChart
         filteredTechs={[
@@ -143,13 +143,13 @@ describe('UI Content — Electricidad CEET 2025-2035', () => {
       />
     );
     const tspans = container.querySelectorAll('tspan');
-    // Find the first tspan of the technology label (should have dy="-0.6em" for 2 lines)
     const labelTspans = Array.from(tspans).filter((t) =>
       t.textContent?.includes('Microrredes')
     );
     expect(labelTspans.length).toBeGreaterThanOrEqual(1);
     const firstTspan = labelTspans[0];
-    expect(firstTspan.getAttribute('dy')).toBe('-0.6em');
+    // First tspan should have dy="0" (text starts below dot, not centered)
+    expect(firstTspan.getAttribute('dy')).toBe('0');
   });
 
   it('RadarChart should place single-line labels without tspan wrappers', () => {

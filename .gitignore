@@ -32,3 +32,17 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# SDD / agent artifacts
+.atl/
+
+# Development auxiliaries (Python scripts, JSON exports)
+*.py
+*.json
+!package.json
+!package-lock.json
+!tsconfig.json
+!components.json
+!postcss.config.js
+!next.config.js
+!public/manifest.json
