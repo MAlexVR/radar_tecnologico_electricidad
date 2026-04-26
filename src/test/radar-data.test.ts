@@ -116,6 +116,35 @@ describe('Radar Data Structure — Electricidad CEET 2025-2035', () => {
     expect(monitorCount).toBe(0);
   });
 
+  // ── SPACING ──
+  it('should distribute technologies in same (sector, ring) with minimum angular separation', () => {
+    const MIN_SEPARATION = 14; // degrees
+    const groups = new Map<string, Technology[]>();
+    for (const tech of TECHNOLOGIES) {
+      const key = `${tech.sector}-${tech.ring}`;
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key)!.push(tech);
+    }
+    for (const [key, group] of groups) {
+      if (group.length <= 1) continue;
+      const sorted = group.map((t) => t.angleOff).sort((a, b) => a - b);
+      for (let i = 1; i < sorted.length; i++) {
+        const diff = sorted[i] - sorted[i - 1];
+        expect(diff).toBeGreaterThanOrEqual(
+          MIN_SEPARATION,
+          `Technologies in sector-ring ${key} have angleOff too close: ${sorted[i - 1]} and ${sorted[i]} (diff=${diff})`,
+        );
+      }
+    }
+  });
+
+  it('should keep all angleOff within sector bounds (-30 to +30)', () => {
+    for (const tech of TECHNOLOGIES) {
+      expect(tech.angleOff).toBeGreaterThanOrEqual(-30);
+      expect(tech.angleOff).toBeLessThanOrEqual(30);
+    }
+  });
+
   // ── EXCLUDED ──
   it('should define EXCLUDED_TECHNOLOGIES as an array', () => {
     expect(Array.isArray(EXCLUDED_TECHNOLOGIES)).toBe(true);
