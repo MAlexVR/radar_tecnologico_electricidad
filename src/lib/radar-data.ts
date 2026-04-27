@@ -347,7 +347,7 @@ export const TECHNOLOGIES: Technology[] = [
     code: "L17",
     sector: 3,
     ring: 1,
-    angleOff: 24,
+    angleOff: 28,
     labelAbove: true,
     trl: 8,
     desc: "Técnica de desagregación de consumo eléctrico mediante análisis de señales en el punto de medición, sin sensores individuales por carga.",
