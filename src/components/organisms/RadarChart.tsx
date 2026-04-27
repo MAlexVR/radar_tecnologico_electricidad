@@ -207,11 +207,14 @@ export const RadarChart = forwardRef<SVGSVGElement, RadarChartProps>(
               <text
                 x={pos.x}
                 y={(() => {
-                  const baseOffset = tech.labelDy ?? (isActive ? 20 : 17);
-                  if (!tech.labelAbove) return pos.y + baseOffset;
+                  if (!tech.labelAbove) {
+                    return pos.y + (tech.labelDy ?? (isActive ? 20 : 17));
+                  }
                   const lineCount = tech.nameLines?.length ?? 1;
-                  const lineHeight = (isActive ? 11 : 9.5) * 1.2;
-                  return pos.y - baseOffset - (lineCount > 1 ? (lineCount - 1) * lineHeight : 0);
+                  const fontSize = isActive ? 11 : 9.5;
+                  const lineHeight = fontSize * 1.2;
+                  const gap = tech.labelDy ?? (isActive ? 14 : 12);
+                  return pos.y - gap - (lineCount - 1) * lineHeight;
                 })()}
                 textAnchor="middle"
                 fill={isActive ? "#1a1a2e" : "#3a3a5c"}
