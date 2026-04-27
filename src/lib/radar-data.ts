@@ -345,6 +345,7 @@ export const TECHNOLOGIES: Technology[] = [
     sector: 3,
     ring: 1,
     angleOff: 24,
+    labelAbove: true,
     trl: 8,
     desc: "Técnica de desagregación de consumo eléctrico mediante análisis de señales en el punto de medición, sin sensores individuales por carga.",
     impact: "Medio",
