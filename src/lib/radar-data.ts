@@ -318,7 +318,6 @@ export const TECHNOLOGIES: Technology[] = [
     sector: 3,
     ring: 1,
     angleOff: 8,
-    labelAbove: true,
     trl: 8,
     desc: "Plataformas de gestión energética integrada para edificios comerciales e industriales: HVAC, iluminación, cargas y generación propia.",
     impact: "Alto",
