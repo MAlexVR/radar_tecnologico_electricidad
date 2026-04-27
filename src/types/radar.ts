@@ -6,6 +6,7 @@ export interface Technology {
   ring: number;
   angleOff: number;
   labelDy?: number;
+  labelAbove?: boolean;
   trl: number;
   desc: string;
   impact: string;
