@@ -307,7 +307,7 @@ export const TECHNOLOGIES: Technology[] = [
     code: "L14",
     sector: 3,
     ring: 1,
-    angleOff: 8,
+    angleOff: 4,
     labelAbove: true,
     trl: 8,
     desc: "Estaciones de carga para vehículos eléctricos con gestión inteligente de potencia, integración con red y pagos digitales.",
