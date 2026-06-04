@@ -27,77 +27,7 @@ import {
   FileText,
   ChevronDown,
 } from "lucide-react";
-
-// ═══════════════════════════════════════════════════════════════
-// SVG Export helpers (no external dependencies needed)
-// ═══════════════════════════════════════════════════════════════
-function svgToCanvas(
-  svgEl: SVGSVGElement,
-  scale = 3,
-): Promise<HTMLCanvasElement> {
-  return new Promise((resolve, reject) => {
-    const svgData = new XMLSerializer().serializeToString(svgEl);
-    const svgBlob = new Blob([svgData], {
-      type: "image/svg+xml;charset=utf-8",
-    });
-    const url = URL.createObjectURL(svgBlob);
-    const img = new Image();
-    img.onload = () => {
-      const canvas = document.createElement("canvas");
-      canvas.width = svgEl.viewBox.baseVal.width * scale;
-      canvas.height = svgEl.viewBox.baseVal.height * scale;
-      const ctx = canvas.getContext("2d")!;
-      ctx.fillStyle = "#ffffff";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-      URL.revokeObjectURL(url);
-      resolve(canvas);
-    };
-    img.onerror = reject;
-    img.src = url;
-  });
-}
-
-async function downloadPNG(svgEl: SVGSVGElement) {
-  const canvas = await svgToCanvas(svgEl, 3);
-  const link = document.createElement("a");
-  link.download = "Radar_Tecnologico_CEET_2025-2035.png";
-  link.href = canvas.toDataURL("image/png");
-  link.click();
-}
-
-async function downloadPDF(svgEl: SVGSVGElement) {
-  const canvas = await svgToCanvas(svgEl, 3);
-  const imgData = canvas.toDataURL("image/png");
-  // Dynamic import of jsPDF
-  const { jsPDF } = await import("jspdf");
-  const pdf = new jsPDF({ orientation: "landscape", unit: "mm", format: "a4" });
-  const pageW = pdf.internal.pageSize.getWidth();
-  const pageH = pdf.internal.pageSize.getHeight();
-  // Title
-  pdf.setFontSize(14);
-  pdf.setTextColor(27, 94, 32);
-  pdf.text(
-    "Radar Tecnológico — Electricidad CEET 2025-2035",
-    pageW / 2,
-    12,
-    { align: "center" },
-  );
-  // Radar image centered
-  const imgSize = Math.min(pageW - 20, pageH - 30);
-  const xOff = (pageW - imgSize) / 2;
-  pdf.addImage(imgData, "PNG", xOff, 18, imgSize, imgSize);
-  // Source
-  pdf.setFontSize(7);
-  pdf.setTextColor(140, 140, 140);
-  pdf.text(
-    "Fuente: Elaboración propia basada en ejercicio VCyT CEET-GICS (2025). Metodología tipo Gartner Technology Radar.",
-    pageW / 2,
-    pageH - 5,
-    { align: "center" },
-  );
-  pdf.save("Radar_Tecnologico_CEET_2025-2035.pdf");
-}
+import { svgToCanvas, downloadPNG, downloadPDF } from "@/lib/export-utils";
 
 // ═══════════════════════════════════════════════════════════════
 // MAIN COMPONENT
