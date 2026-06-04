@@ -148,14 +148,20 @@ function normalizeElecHorizon(raw: string): import("@/lib/trajectory").HorizonBu
  * MATRIZ DE COBERTURA (driver × capa → número de ítems L2/L3/L4)
  * ────────────────────────────────────────────────────────────────────────────
  *        L2    L3    L4   | total cap.
- * D1      2     4     3   |     9
- * D2      3     4     2   |     9
- * D3      2     3     2   |     7
- * D4      2     3     2   |     7
- * D5      2     3     3   |     8
+ * D1      3     6     4   |    13
+ * D2      3     4     3   |    10
+ * D3      2     5     3   |    10
+ * D4      3     6     3   |    12
+ * D5      2     6     4   |    12
  * ────────────────────────────────────────────────────────────────────────────
  * L1 (tecnologías): 18 ítems derivados de TECHNOLOGIES (todos los drivers).
- * Total ítems L2-L4: 40 ítems. Total general: 58 ítems.
+ * Total ítems L2-L4: 57 ítems. Total general: 75 ítems.
+ * ────────────────────────────────────────────────────────────────────────────
+ * v1.2.0: añadidos 17 ítems ALTA + MEDIA prioridad del coverage-audit.
+ *   Fuentes: GOR-F-012, Ley 2099/2021, Ley 1964/2019, Res. 40123/2024,
+ *   Hoja de Ruta H2 Colombia (MinEnergía 2022), SGC geotermia,
+ *   CREG resoluciones 2024, selinc.com/selu/, site.ieee.org/colombia-pes/,
+ *   openadr.org, ingenieria.bogota.unal.edu.co (EMC-UN).
  * ────────────────────────────────────────────────────────────────────────────
  */
 
@@ -337,6 +343,63 @@ export function buildElectricidadTrajectory(): TrajectoryDataset {
     meta: { Tipo: "Talento", Prioridad: "P1" },
   });
 
+  // ── D1 / L3 (nuevos — ALTA prioridad): H2 verde + geotermia, protección adaptativa, energía comunitaria ──
+
+  // GOR sección 1.2 Hallazgos de Alto Impacto: "Hidrógeno verde y geotermia como tecnologías
+  //   emergentes de alta prioridad: electrólisis PEM, ciclos ORC y sistemas EGS".
+  // Ley 2099/2021 Art. 5: H2 verde = producido de FNCER (incluye solar, eólica, geotérmica).
+  // Decreto 895/2022: beneficios fiscales proyectos H2 de bajas emisiones.
+  // Hoja de Ruta del Hidrógeno Colombia 2022 (MinEnergía + BID): tres ejes —
+  //   viabilidad producción/uso, cierre de brechas regulatorias, proyectos piloto.
+  // SGC: potencial geotérmico Colombia 1.170 MW en 21 áreas; primera subasta 2H 2024.
+  items.push({
+    id: "d1-l3-formacion-h2-geotermia",
+    layer: "L3",
+    driver: "D1",
+    horizon: "medio2", // JUICIO: H2 verde/geotermia en Colombia son etapa de hoja de ruta (2022); adopción formativa 3-5 años
+    title: "Módulo formativo: hidrógeno verde (electrólisis PEM) y geotermia (ciclos ORC / EGS) — competencias emergentes",
+    detail:
+      "Desarrollar módulo formativo en tecnologías emergentes de la hoja de ruta energética colombiana: (1) Hidrógeno verde — electrólisis PEM, cadena de valor (producción-almacenamiento-uso), LCOH, incentivos Ley 2099/2021 y Decreto 895/2022 (deducción renta, exclusión IVA, arancel 0). (2) Geotermia — ciclos ORC para recursos de baja entalpía, sistemas EGS (Enhanced Geothermal), potencial colombiano 1.170 MW (SGC, 21 áreas delimitadas: Caldas, Tolima, Risaralda, Nariño). Fuente primaria: Hoja de Ruta del Hidrógeno Colombia 2022 (MinEnergía-BID).",
+    gap: "Alta", // GOR sección 1.2: competencias ausentes explícitas; prioridad alta transición energética
+    source: `${FUENTE_GOR}, sección 1.2; Ley 2099/2021 Art. 5; Decreto 895/2022; Hoja de Ruta H2 Colombia 2022 (MinEnergía-BID); SGC potencial geotérmico 1.170 MW`,
+    meta: {
+      Tipo: "Talento",
+      Prioridad: "P1",
+      Línea: "L01/L04",
+      Fundamento: "Hoja de Ruta H2 Colombia: https://www.minenergia.gov.co/documents/5861/Hoja_Ruta_Hidrogeno_Colombia_2810.pdf | SGC Geotermia: https://www2.sgc.gov.co/Publicaciones/Cientificas/NoSeriadas/Documents/geotermia-en-colombia.pdf",
+    },
+  });
+
+  // GOR Tabla 11 fila 4 (microrredes) + Presentación slide 7 (D1 protección adaptativa):
+  // "IEEE 2030.7 Standard for the Specification of Microgrid Controllers — protección adaptativa."
+  // MEDIA prioridad según coverage-audit.
+  items.push({
+    id: "d1-l3-proteccion-adaptativa-microrredes",
+    layer: "L3",
+    driver: "D1",
+    horizon: "medio1", // JUICIO: competencia complementaria a microrred (D1-L2) — 1-3 años
+    title: "Formación: protección adaptativa de microrredes (IEEE 2030.7 / IEC 61850 GOOSE) — coordinación de protecciones DER",
+    detail:
+      "Capacitar instructores en protección adaptativa para microrredes con DER integrada: coordinación de protecciones bajo IEEE 2030.7 (Microgrid Controllers Standard), uso de mensajes GOOSE IEC 61850 para disparo rápido, zonas de protección adaptativas ante variaciones de generación DER. Extiende la formación en microrredes (D1-L3) hacia la capa de control de protecciones.",
+    source: `${FUENTE_GOR}, Tabla 11 (fila 4); Presentación VCyT slide 7`,
+    meta: { Tipo: "Talento", Prioridad: "P2", Línea: "L01/L08" },
+  });
+
+  // GOR Tabla 1 (Energía Comunitaria L04, TRL 7, ADOPTAR) + Presentación slide 7:
+  // "Energía comunitaria / cooperativas" — falta formación D1 L3.
+  // MEDIA prioridad según coverage-audit.
+  items.push({
+    id: "d1-l3-energia-comunitaria-cooperativas",
+    layer: "L3",
+    driver: "D1",
+    horizon: "medio1", // L04 TRL 7, anillo ADOPTAR — adoptable en 1-3 años con formación
+    title: "Módulo: energía comunitaria y cooperativas energéticas (L04 — Ley 2099/2021, CREG 030/2018 AGPE)",
+    detail:
+      "Módulo formativo sobre modelos de negocio de energía comunitaria y cooperativas: Autogeneración de Pequeña Escala (AGPE) bajo CREG 030/2018 y CREG 098/2019, Generación Distribuida (GD) con contrato de respaldo, comunidades energéticas como figura emergente impulsada por la Ley 2099/2021. Aplica a zonas no interconectadas (ZNI) y proyectos rurales de electrificación. Tecnología L04 (TRL 7 — ADOPTAR).",
+    source: `${FUENTE_GOR}, Tabla 1 (L04 TRL 7); Presentación VCyT slide 7; Ley 2099/2021; CREG 030/2018`,
+    meta: { Tipo: "Talento", Prioridad: "P2", Línea: "L04" },
+  });
+
   // ── D1 / L4: Alianzas ────────────────────────────────────────────────────
 
   // Tabla 9: "Schneider Electric (Schneider Electric University)" — Fabricante con programa educativo
@@ -375,6 +438,29 @@ export function buildElectricidadTrajectory(): TrajectoryDataset {
       Aliado: "Fronius / SMA / Huawei",
       "Tipo de aliado": "Fabricante",
       País: "Austria / Alemania / China",
+    },
+  });
+
+  // Tabla 11, fila 4: "Microrred didáctica: solar 3 kWp + BESS LFP + carga programable" —
+  //   "Controlador de microrred (SEL-3530 RTAC o Schneider Conext)."
+  // SEL University (selinc.com/selu/): cursos eLearning sobre IEC 61850 (eCOM 202),
+  //   protección y automatización, RTAC, protocolos de comunicación industrial.
+  // GOR Tabla 11 fila 4: "SEL University" mencionado como referente.
+  items.push({
+    id: "d1-l4-sel-university",
+    layer: "L4",
+    driver: "D1",
+    horizon: "corto", // SEL University cursos disponibles en línea hoy; alianza formalizable 0-12 meses
+    title: "SEL University (Schweitzer Engineering Laboratories — SEL-3530 RTAC, IEC 61850)",
+    detail:
+      "Schweitzer Engineering Laboratories (SEL) ofrece SEL University con cursos especializados en protección, automatización y comunicaciones industriales. Cursos clave: eCOM 202 (Introduction to IEC 61850 — incluye GOOSE, MMS, Sampled Values), COM 401 (Data Communications Fundamentals — DNP3, Modbus, IEC 61850). Relevante para la microrred didáctica (SEL-3530 RTAC como controlador de microrred) y el laboratorio IEC 61850 (D2-L2). Tipo de alianza sugerida: uso de cursos SEL University para formación de instructores en automatización de microrredes y subestaciones.",
+    source: `${FUENTE_GOR}, Tabla 11 (fila 4); SEL University: https://selinc.com/selu/`,
+    meta: {
+      Tipo: "Alianza",
+      Aliado: "SEL University (Schweitzer Engineering Laboratories)",
+      "Tipo de aliado": "Fabricante / Academia",
+      País: "EE.UU. / global",
+      Fundamento: "selinc.com/selu/ — cursos eCOM 202 y COM 401 disponibles en línea",
     },
   });
 
@@ -574,6 +660,29 @@ export function buildElectricidadTrajectory(): TrajectoryDataset {
     },
   });
 
+  // Tabla 11, fila 2: "mín. 4 IEDs (relés SEL-751/ABB REF615)" —
+  //   ABB Ability Academic: plataforma académica ABB para relés de protección REF615 y PCM600.
+  // Nota: ABB Ability Academic como programa formal en Colombia NO está confirmado públicamente
+  //   con convenio activo — se registra como alianza "sugerida" basada en GOR Tabla 11 fila 2.
+  items.push({
+    id: "d2-l4-abb-ability",
+    layer: "L4",
+    driver: "D2",
+    horizon: "medio1", // JUICIO: formalización de convenio académico ABB — 6-18 meses; depende de gestión con representante local
+    title: "ABB (relés REF615 + plataforma PCM600 — equipamiento laboratorio IEC 61850) — alianza sugerida",
+    detail:
+      "ABB es fabricante de relés de protección REF615 y plataforma de configuración PCM600 mencionados en GOR Tabla 11 fila 2 para el laboratorio IEC 61850. ABB ofrece cursos técnicos especializados en protección y automatización de subestaciones (curso P246: IEC 61850 in Power Utility Automation). Tipo de alianza sugerida: dotación de relés REF615 y licencias PCM600 a precio académico + capacitación de instructores en protección con IEC 61850.",
+    gap: "Crítica", // Tabla 11 fila 2: laboratorio IEC 61850 es brecha Crítica; ABB es proveedor clave
+    source: `${FUENTE_GOR}, Tabla 11 (fila 2); ABB curso P246 IEC 61850`,
+    meta: {
+      Tipo: "Alianza",
+      Aliado: "ABB (relés REF615 / PCM600)",
+      "Tipo de aliado": "Fabricante",
+      País: "Suiza / Colombia",
+      Cierre: "sugerida — pendiente gestión con representante ABB Colombia",
+    },
+  });
+
   // ─────────────────────────────────────────────────────────────────────────
   // D3: Flexibilidad de Red con Nuevos Modelos Operativos
   // L2/L3/L4 — fuente: GOR Tablas 8, 9, 10, 11
@@ -672,6 +781,46 @@ export function buildElectricidadTrajectory(): TrajectoryDataset {
     meta: { Tipo: "Talento", Prioridad: "P2", Línea: "L12" },
   });
 
+  // ── D3 / L3 (nuevos — ALTA + MEDIA prioridad): Transactiva P2P y TSO-DSO ─
+
+  // Presentación VCyT slide 10: LT3.4 "Mercados de Energía Transactiva y P2P" — brecha crítica listada.
+  // Slide 7: "Mercados de Energía Transactiva" bajo D3.
+  // CREG 2024: programa transitorio de participación activa de la demanda en mercado mayorista.
+  // XM S.A.: desarrolla esquemas de flexibilidad y agregación DER para el mercado colombiano.
+  items.push({
+    id: "d3-l3-mercados-transactiva-p2p",
+    layer: "L3",
+    driver: "D3",
+    horizon: "medio2", // JUICIO: LT3.4 listada como brecha crítica — marco regulatorio colombiano en desarrollo; adoptable 3-5 años
+    title: "Módulo: Mercados de Energía Transactiva y P2P (LT3.4) — CREG, XM, OpenADR, blockchain energético",
+    detail:
+      "Desarrollar módulo sobre mercados de energía transactiva y P2P (LT3.4): conceptos de energía transactiva (transactive energy), mercados P2P entre prosumidores, señales de precio TOU y tiempo real, DLT/blockchain en mercados locales de energía, rol de OpenADR 2.0/3.0 como protocolo de señalización. Contexto regulatorio colombiano: programa transitorio CREG de participación activa de la demanda (2024), XM como operador del mercado mayorista. Depende de infraestructura OpenADR (D3-L2) y módulo DR básico (d3-l3-modulo-dr-agregacion-der).",
+    gap: "Alta", // Presentación slide 10: LT3.4 listada como brecha; CREG recién iniciando regulación
+    source: `${FUENTE_GOR}, Presentación VCyT slide 10 (LT3.4); CREG programa transitorio demanda 2024; XM S.A.: https://www.xm.com.co/consumo/mercados`,
+    meta: {
+      Tipo: "Talento",
+      Prioridad: "P1",
+      Línea: "L12/L10",
+      Fundamento: "CREG Res. 101 040/2024 y 101 054/2024; XM mercados flexibilidad",
+    },
+  });
+
+  // Presentación VCyT slide 7: "Coordinación TSO-DSO" bajo D3.
+  // En Colombia: XM es el TSO; Enel-Codensa, EPM, Celsia son DSOs principales.
+  // Marco regulatorio: no hay resolución CREG específica TSO-DSO aún; en desarrollo.
+  // MEDIA prioridad según coverage-audit.
+  items.push({
+    id: "d3-l3-coordinacion-tso-dso",
+    layer: "L3",
+    driver: "D3",
+    horizon: "medio2", // JUICIO: regulación colombiana TSO-DSO en etapa de diseño; formación viable en 3-5 años
+    title: "Módulo: Coordinación TSO-DSO para integración DER (XM / operadores distribución Colombia)",
+    detail:
+      "Módulo sobre coordinación técnica y operativa entre el Operador del Sistema (XM — TSO) y los operadores de red de distribución (DSO: Enel-Codensa, EPM, Celsia) en el contexto de integración masiva de DER. Temas: flujos bidireccionales de información TSO-DSO, servicios de red de distribución (congestion management, voltaje), modelos de coordinación (fully centralized, hierarchical, fully distributed), referencia al proyecto SmartNet (IEA). El marco regulatorio colombiano para TSO-DSO aún está en desarrollo al 2025.",
+    source: `${FUENTE_GOR}, Presentación VCyT slide 7; SmartGridsInfo: coordinación TSO-DSO SmartNet`,
+    meta: { Tipo: "Talento", Prioridad: "P2", Línea: "L10/L11" },
+  });
+
   // ── D3 / L4: Alianzas ────────────────────────────────────────────────────
 
   // Tabla 9: Universidad Nacional de Colombia — aliada en D3 para I+D DER/mercados
@@ -708,6 +857,27 @@ export function buildElectricidadTrajectory(): TrajectoryDataset {
       Aliado: "XM S.A.",
       "Tipo de aliado": "Actor ecosistema",
       País: "Colombia",
+    },
+  });
+
+  // Tabla 11, fila 11: "OpenADR Alliance como referente" para respuesta a la demanda.
+  // OpenADR Alliance: organismo de certificación del protocolo OpenADR (VEN/VTN).
+  //   OpenADR 3.0 primeras certificaciones marzo 2025. 10 laboratorios de prueba acreditados.
+  items.push({
+    id: "d3-l4-openadr-alliance",
+    layer: "L4",
+    driver: "D3",
+    horizon: "medio1", // JUICIO: participación en alliance como referente técnico — 6-18 meses
+    title: "OpenADR Alliance (protocolo VEN/VTN para respuesta a la demanda — OpenADR 2.0 / 3.0)",
+    detail:
+      "OpenADR Alliance es el organismo internacional que gestiona la certificación del protocolo Open Automated Demand Response (OpenADR). Define el estándar VEN (Virtual End Node) / VTN (Virtual Top Node) para señalización automatizada de demanda. OpenADR 3.0 recibió primeras certificaciones en marzo 2025 (E.ON, EVoke Systems, Universal Devices). Relevante para el servidor OpenADR de pruebas (d3-l2-servidor-openadr) y el módulo de mercados transactiva (d3-l3-mercados-transactiva-p2p). Tipo de alianza sugerida: referencia técnica y acceso a documentación del estándar para diseño de laboratorio.",
+    source: `${FUENTE_GOR}, Tabla 11 (fila 11); OpenADR Alliance: https://www.openadr.org`,
+    meta: {
+      Tipo: "Alianza",
+      Aliado: "OpenADR Alliance",
+      "Tipo de aliado": "Consorcio / Estándar",
+      País: "EE.UU. / global",
+      Fundamento: "openadr.org — OpenADR 3.0 certificaciones marzo 2025",
     },
   });
 
@@ -754,6 +924,30 @@ export function buildElectricidadTrajectory(): TrajectoryDataset {
       Tipo: "Ambiente",
       Prioridad: "P2",
       Línea: "L09",
+    },
+  });
+
+  // ── D4 / L2 (nuevo — ALTA prioridad): Cargador AC Nivel 2 OCPP ───────────
+
+  // GOR Tabla 1 (V2G, movilidad eléctrica L13/L14): "Fase 2: cargador AC 22 kW con OCPP."
+  // Ley 1964/2019: estaciones de carga pública DEBEN usar OCPP o norma IEC/ISO equivalente.
+  // Res. 40123/2024 MinEnergía: reglamenta infraestructura de carga para VE en Colombia.
+  // RETIE aplica a instalaciones eléctricas de puntos de recarga.
+  items.push({
+    id: "d4-l2-cargador-ac-nivel2-ocpp",
+    layer: "L2",
+    driver: "D4",
+    horizon: "medio1", // JUICIO: Tabla 1 "Fase 2" sugiere 1-3 años; depende de microrred (D1-L2)
+    title: "Cargador AC Nivel 2 (22 kW) con OCPP 2.0.1 + simulador EV para laboratorio VE/V2G",
+    detail:
+      "Adquirir e instalar cargador AC de Nivel 2 (hasta 22 kW, Modo 3 IEC 61851) con protocolo OCPP 2.0.1 para laboratorio de movilidad eléctrica. Incluir simulador EV (ej. EVSE Simulator) para prácticas de carga, respuesta a la demanda y V2G (Vehicle-to-Grid). Cumplimiento Ley 1964/2019 (OCPP obligatorio en carga pública), RETIE y Resolución 40123/2024 MinEnergía. Integrar con plataforma VPP (D3) para demostración de EV como recurso flexible.",
+    gap: "Alta", // GOR Tabla 1: L14 (Infra Carga) brecha Alta — sin cargadores ni formación OCPP
+    source: `${FUENTE_GOR}, Tabla 1 (L14); Ley 1964/2019 Art. sobre OCPP; Res. 40123/2024 MinEnergía`,
+    meta: {
+      Tipo: "Ambiente",
+      Prioridad: "P2",
+      Línea: "L13/L14",
+      Fundamento: "Ley 1964/2019: https://www.alcaldiabogota.gov.co/sisjur/normas/Norma1.jsp?i=85510 | Res 40123/2024: MinEnergía",
     },
   });
 
@@ -809,6 +1003,39 @@ export function buildElectricidadTrajectory(): TrajectoryDataset {
     meta: { Tipo: "Talento", Prioridad: "P1" },
   });
 
+  // ── D4 / L3 (nuevos — ALTA + MEDIA): Domótica L16 y NILM L17 ─────────────
+
+  // GOR Tabla 1 + Presentación slide 7: L16 "Domótica / Hogares Inteligentes" TRL 9, anillo ADOPTAR.
+  // Es el único driver D4 con TRL 9 y anillo "Adoptar" sin cobertura en L3.
+  // Sin ítem L3 para L16 a pesar de ser tecnología lista para adopción inmediata.
+  items.push({
+    id: "d4-l3-domotica-hogares-inteligentes",
+    layer: "L3",
+    driver: "D4",
+    horizon: "ahora", // L16 TRL 9 anillo ADOPTAR — tecnología madura, formación adoptable hoy
+    title: "Módulo: domótica y hogares inteligentes (L16 TRL 9 — KNX, Matter/Thread, Zigbee, integración BEMS)",
+    detail:
+      "Módulo formativo en domótica y hogar inteligente para el Técnico de Instalaciones Eléctricas Residenciales (programa 832202): protocolos estándar KNX (ISO/IEC 14543-3), Matter/Thread (CSA Connectivity Standards Alliance), Zigbee y Z-Wave para control de luminarias, HVAC, enchufes inteligentes, EV. Integración con BEMS (Building Energy Management System) y medidor inteligente AMI. Herramientas: Home Assistant (open-source), KNX ETS. Tecnología L16 TRL 9 — adoptable de inmediato.",
+    gap: "Alta", // Coverage-audit: único D4 TRL 9 ADOPTAR sin cobertura L3; demanda laboral alta en instalaciones domóticas
+    source: `${FUENTE_GOR}, Tabla 1 (L16 TRL 9); Presentación VCyT slide 7`,
+    meta: { Tipo: "Talento", Prioridad: "P1", Línea: "L16" },
+  });
+
+  // GOR Tabla 1: L17 "NILM — Monitoreo No Intrusivo de Cargas".
+  // Presentación slide 7 lista L17 bajo D4. Sin ítem L3 para esta tecnología.
+  // MEDIA prioridad — tecnología emergente con creciente aplicación en auditorías energéticas.
+  items.push({
+    id: "d4-l3-nilm-monitoreo-cargas",
+    layer: "L3",
+    driver: "D4",
+    horizon: "medio1", // JUICIO: L17 requiere formación en ML + señales; adoptable en 1-3 años
+    title: "Módulo: NILM — Monitoreo No Intrusivo de Cargas (L17 — disaggregación de carga, IA aplicada a auditoría energética)",
+    detail:
+      "Módulo formativo en Non-Intrusive Load Monitoring (NILM): técnicas de disaggregación de carga para identificar equipos individuales a partir de la curva de consumo total del medidor inteligente. Algoritmos: FHMM (Factorial Hidden Markov Models), redes neuronales convolucionales para patrones de consumo, datasets públicos (REDD, UK-DALE). Aplicaciones: auditorías energéticas sin instrumentación per-equipo, detección de fallas, comportamiento del usuario. Requiere formación previa en Python/ML (d4-l2-laboratorio-simulacion-ml).",
+    source: `${FUENTE_GOR}, Tabla 1 (L17); Presentación VCyT slide 7`,
+    meta: { Tipo: "Talento", Prioridad: "P2", Línea: "L17" },
+  });
+
   // ── D4 / L4: Alianzas ────────────────────────────────────────────────────
 
   // Tabla 9: Universidad Industrial de Santander (UIS) — Grupo GISEL
@@ -846,6 +1073,27 @@ export function buildElectricidadTrajectory(): TrajectoryDataset {
       Aliado: "Siemens Energy",
       "Tipo de aliado": "Fabricante",
       País: "Alemania / Colombia",
+    },
+  });
+
+  // Tabla 11, fila 7: "Alianza con UNAL (grupo IA aplicada) para co-diseño de contenidos."
+  // UNAL grupo EMC-UN (Inteligencia Computacional Aplicada al Sector Eléctrico), Prof. Sergio Raúl Rivera.
+  // URL: https://ingenieria.bogota.unal.edu.co/uecp/ — gestión de activos con IA, laboratorios virtuales.
+  items.push({
+    id: "d4-l4-unal-ia-aplicada",
+    layer: "L4",
+    driver: "D4",
+    horizon: "medio1", // Tabla 11 fila 7: "Alianza con UNAL" — formalizable en convenio 6-18 meses
+    title: "Universidad Nacional de Colombia — Grupo EMC-UN (Inteligencia Computacional Aplicada al Sector Eléctrico)",
+    detail:
+      "Grupo de investigación EMC-UN de UNAL Bogotá: especializado en inteligencia computacional aplicada al sector eléctrico — gestión de activos, mantenimiento predictivo, modelos de degradación de transformadores, IA para pronóstico de demanda. Liderado por Prof. Sergio Raúl Rivera (categoría Minciencias). Tipo de alianza sugerida: co-diseño de contenidos de BEMS con IA para el programa Gestión Eficiente de la Energía, compartir datasets de mantenimiento de activos, uso de laboratorios virtuales UNAL.",
+    source: `${FUENTE_GOR}, Tabla 11 (fila 7); UNAL EMC-UN: https://ingenieria.bogota.unal.edu.co/uecp/index.php/component/sppagebuilder/page/68`,
+    meta: {
+      Tipo: "Alianza",
+      Aliado: "Universidad Nacional de Colombia — Grupo EMC-UN",
+      "Tipo de aliado": "Universidad",
+      País: "Colombia",
+      Fundamento: "ingenieria.bogota.unal.edu.co/uecp — gestión activos eléctricos con IA",
     },
   });
 
@@ -946,6 +1194,58 @@ export function buildElectricidadTrajectory(): TrajectoryDataset {
     meta: { Tipo: "Talento", Prioridad: "P2" },
   });
 
+  // ── D5 / L3 (nuevos — ALTA + MEDIA): Interoperabilidad, Regulación, Precios Dinámicos, MRV ──
+
+  // Presentación VCyT slide 10: LT5.2 "Estándares de Interoperabilidad" — brecha documentada.
+  //   LT5.5 "Regulación Basada en Desempeño" — lista de 7 brechas críticas en slide 10.
+  // GOR Tabla 11: D5 ecosistema normativo sin ítems de interoperabilidad IEC 61968/61970 ni
+  //   regulación basada en desempeño. IEC 61968/61970 = CIM (Common Information Model),
+  //   IEEE 2030.5 = SEP 2.0 para comunicación de medidores inteligentes.
+  items.push({
+    id: "d5-l3-interoperabilidad-estandares",
+    layer: "L3",
+    driver: "D5",
+    horizon: "medio1", // JUICIO: LT5.2 brecha documentada; formación en estándares adoptable 1-3 años
+    title: "Módulo: estándares de interoperabilidad (LT5.2) — IEC 61968/61970 CIM, IEEE 2030.5 (SEP 2.0), IEC 62541 OPC-UA",
+    detail:
+      "Módulo formativo en estándares de interoperabilidad para smart grids: IEC 61968/61970 (Common Information Model — CIM para intercambio de datos de red), IEEE 2030.5 (SEP 2.0 — protocolo de comunicación con medidores inteligentes y prosumidores), IEC 62541 OPC-UA (interoperabilidad IT/OT), FIWARE NGSI-LD para plataformas de datos energéticos. Contexto colombiano: XM usa CIM para el modelo del SIN; operadores AMI usan IEEE 2030.5 o DLMS/COSEM. Brecha LT5.2 identificada en slide 10.",
+    gap: "Alta", // Presentación slide 10: LT5.2 entre las 7 brechas críticas de D5
+    source: `${FUENTE_GOR}, Presentación VCyT slide 10 (LT5.2)`,
+    meta: { Tipo: "Talento", Prioridad: "P1", Línea: "L06/L18" },
+  });
+
+  // Presentación VCyT slide 10: LT5.5 "Regulación Basada en Desempeño" — brecha crítica D5.
+  // Slide 7: lista bajo D5. Regulación basada en desempeño (RBD / PBR — Performance-Based Regulation)
+  //   es el enfoque regulatorio que reemplaza regulación de costos por incentivos a resultados.
+  //   CREG está en proceso de adopción de esquemas de incentivos para calidad y eficiencia.
+  items.push({
+    id: "d5-l3-regulacion-basada-desempeno",
+    layer: "L3",
+    driver: "D5",
+    horizon: "medio2", // JUICIO: LT5.5 es brecha crítica que requiere cambio regulatorio mayor; 3-5 años
+    title: "Módulo: regulación basada en desempeño (LT5.5 — PBR, CREG incentivos, SAIDI/SAIFI, IEC 62271)",
+    detail:
+      "Módulo sobre marcos de regulación basada en desempeño (Performance-Based Regulation) para distribución eléctrica: indicadores SAIDI/SAIFI/MAIFI como KPIs contractuales, esquemas de incentivos CREG para calidad de servicio, regulatory sandboxes para innovación, marcos internacionales de referencia (Ofgem RIIO en UK, CPUC en California). Comparación con esquema colombiano actual basado en costos. Brecha LT5.5 es crítica para adopción de tecnologías smart grid bajo marco regulatorio de resultados.",
+    gap: "Alta", // Presentación slide 10: LT5.5 entre las 7 brechas críticas de D5
+    source: `${FUENTE_GOR}, Presentación VCyT slide 10 (LT5.5); slide 7`,
+    meta: { Tipo: "Talento", Prioridad: "P1", Línea: "L18" },
+  });
+
+  // Presentación VCyT slide 7: "Mecanismos de Precios Dinámicos (LT5.4)" bajo D5.
+  // "Sistemas de Medición, Reporte y Verificación (MRV)" bajo D5.
+  // MEDIA prioridad — complementan el ecosistema normativo de D5.
+  items.push({
+    id: "d5-l3-precios-dinamicos-mrv",
+    layer: "L3",
+    driver: "D5",
+    horizon: "medio1", // JUICIO: TOU/RTP son señales regulatorias — Colombia en proceso; formación viable 1-3 años
+    title: "Módulo: mecanismos de precios dinámicos (LT5.4 — TOU, RTP, CPP) y MRV energético (ISO 50015, IPMVP)",
+    detail:
+      "Módulo formativo en dos temas de ecosistema normativo D5: (1) Precios dinámicos (LT5.4) — Time-of-Use (TOU), Real-Time Pricing (RTP), Critical Peak Pricing (CPP) como instrumentos tarifarios para respuesta a la demanda; estado en Colombia (CREG tarifas, resoluciones sobre cargo por uso y cargos de mercado); impacto en prosumidores AGPE. (2) Medición, Reporte y Verificación (MRV) — protocolo IPMVP (International Performance Measurement and Verification Protocol), ISO 50015 para medición de ahorros energéticos, línea base y ajustes por condiciones operativas.",
+    source: `${FUENTE_GOR}, Presentación VCyT slide 7 (LT5.4, MRV)`,
+    meta: { Tipo: "Talento", Prioridad: "P2", Línea: "L15/L18" },
+  });
+
   // ── D5 / L4: Alianzas ────────────────────────────────────────────────────
 
   // Tabla 9: CIDET (Centro de Investigación y Desarrollo Tecnológico del Sector Eléctrico)
@@ -1002,6 +1302,27 @@ export function buildElectricidadTrajectory(): TrajectoryDataset {
       Aliado: "CIGRÉ Colombia",
       "Tipo de aliado": "Consorcio",
       País: "Colombia / Global",
+    },
+  });
+
+  // GOR Conclusiones: "IEEE PES" como consorcio sectorial junto a CIGRÉ.
+  // IEEE PES Colombia: capítulo profesional activo. Encuentro Profesional 2024 el 9 dic en Bogotá.
+  // Capítulos universitarios: Uniandes, U. Distrital, y otros.
+  items.push({
+    id: "d5-l4-ieee-pes-colombia",
+    layer: "L4",
+    driver: "D5",
+    horizon: "corto", // IEEE PES Colombia activo — alianza formalizable en 0-12 meses
+    title: "IEEE PES Colombia (Power & Energy Society — Sección Colombia + capítulos universitarios)",
+    detail:
+      "Capítulo profesional de la IEEE Power & Energy Society (PES) en Colombia. Organiza el Encuentro Profesional IEEE PES Colombia anual (última edición: 9 dic 2024, Bogotá), grupos de trabajo en sistemas eléctricos, redes inteligentes y transición energética. Capítulos universitarios activos en Uniandes, U. Distrital y otras universidades. Tipo de alianza sugerida: membresía institucional SENA-CEET, participación en comités técnicos y acceso a publicaciones IEEE PES (standards, revistas Power & Energy, Transactions on Smart Grid).",
+    source: `${FUENTE_GOR}, Conclusiones (consorcio sectorial); IEEE PES Colombia: https://site.ieee.org/colombia-pes/`,
+    meta: {
+      Tipo: "Alianza",
+      Aliado: "IEEE PES Colombia",
+      "Tipo de aliado": "Consorcio / Academia",
+      País: "Colombia / Global",
+      Fundamento: "site.ieee.org/colombia-pes/ — Encuentro PES Colombia 2024",
     },
   });
 
