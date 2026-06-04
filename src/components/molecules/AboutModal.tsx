@@ -37,10 +37,10 @@ export function AboutModal({ open, onOpenChange }: AboutModalProps) {
 
           <div>
             <h3 className="text-lg font-bold text-sena-blue tracking-tight">
-              Radar Tecnológico
+              Vigilancia Tecnológica CEET
             </h3>
             <p className="text-xs text-sena-gray-dark font-medium mt-0.5">
-              Versión 1.0
+              Electricidad · Versión 1.1.0
             </p>
           </div>
 
@@ -66,10 +66,11 @@ export function AboutModal({ open, onOpenChange }: AboutModalProps) {
           </div>
 
           <p className="text-[11px] text-sena-gray-dark leading-relaxed bg-sena-gray-light/20 px-3 py-3 rounded-xl border border-sena-gray-light/50">
-            Herramienta web de vigilancia científico-tecnológica y prospectiva
-            del área de electricidad. Visualiza la madurez y adopción de
-            tecnologías clave para el horizonte 2025-2035, organizadas por nivel
-            TRL y direccionadores estratégicos.
+            Plataforma de vigilancia científico-tecnológica del área de Electricidad del
+            Centro de Electricidad, Electrónica y Telecomunicaciones (CEET — SENA). Integra
+            el <strong>Radar Tecnológico</strong> (madurez y adopción de tecnologías) y el{" "}
+            <strong>Mapa de Trayectoria Tecnológica</strong> (evolución de capacidades del
+            centro en el tiempo), para el horizonte 2025-2035.
           </p>
 
           <div className="bg-sena-green/10 rounded-xl p-3 border border-sena-green/20 mt-2 text-left space-y-2">

@@ -15,13 +15,15 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Radar Tecnológico — Electricidad CEET | SENA",
+  title: "Vigilancia Tecnológica CEET — Electricidad: Radar y Mapa de Trayectoria | SENA",
   description:
-    "Radar interactivo de vigilancia científico-tecnológica del área de electricidad del Centro de Electricidad, Electrónica y Telecomunicaciones (CEET) — SENA 2025-2035.",
+    "Plataforma de vigilancia científico-tecnológica del área de Electricidad del Centro de Electricidad, Electrónica y Telecomunicaciones (CEET — SENA). Integra el Radar Tecnológico (madurez y adopción de tecnologías) y el Mapa de Trayectoria Tecnológica (evolución de capacidades del centro en el tiempo), para el horizonte 2025-2035.",
   keywords: [
     "radar tecnológico",
+    "mapa de trayectoria tecnológica",
     "electricidad",
     "vigilancia tecnológica",
+    "prospectiva tecnológica",
     "energías renovables",
     "redes eléctricas",
     "microrredes",
@@ -40,7 +42,7 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "Radar Tech",
+    title: "VT CEET",
   },
 };
 

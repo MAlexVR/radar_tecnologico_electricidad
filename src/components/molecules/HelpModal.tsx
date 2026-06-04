@@ -60,7 +60,7 @@ export function HelpModal({ open, onOpenChange }: HelpModalProps) {
             id="help-modal-description"
             className="text-sena-gray-dark/80 mt-1"
           >
-            Conceptos clave del Radar Tecnológico de Electricidad
+            Conceptos clave de la plataforma de Vigilancia Tecnológica CEET — Electricidad
           </DialogDescription>
         </DialogHeader>
 
@@ -144,6 +144,69 @@ export function HelpModal({ open, onOpenChange }: HelpModalProps) {
                   </p>
                 </div>
               ))}
+            </div>
+          </section>
+
+          <div className="h-px bg-sena-gray-light" />
+
+          {/* Mapa de Trayectoria Tecnológica */}
+          <section className="space-y-3">
+            <h3 className="font-bold text-base text-sena-blue flex items-center gap-2">
+              <span className="bg-sena-green text-white rounded-sm w-7 h-7 font-bold text-xs flex items-center justify-center shrink-0">
+                ↗
+              </span>
+              Mapa de Trayectoria Tecnológica
+            </h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              El <strong>Mapa de Trayectoria Tecnológica</strong> proyecta en el tiempo
+              (2025–2035) la evolución de las capacidades del área de Electricidad del CEET,
+              organizadas por direccionador estratégico y horizonte de adopción.
+            </p>
+
+            <div className="border border-sena-gray-light rounded-lg p-3 bg-sena-gray-light/20 space-y-3">
+              <div>
+                <p className="text-xs font-semibold text-sena-blue mb-1">Ejes del mapa</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  <strong>Eje X (tiempo):</strong> horizontes de adopción desde el presente
+                  (2025) hasta el largo plazo (2035).<br />
+                  <strong>Eje Y (capas):</strong> 4 dimensiones de capacidad institucional.
+                </p>
+              </div>
+
+              <div>
+                <p className="text-xs font-semibold text-sena-blue mb-1.5">Capas (swimlanes)</p>
+                <div className="grid gap-1.5">
+                  {[
+                    { label: "Tecnologías", desc: "Sistemas, equipos y soluciones tecnológicas por adoptar o desarrollar." },
+                    { label: "Infraestructura", desc: "Ambientes, laboratorios, plataformas y equipamiento de soporte." },
+                    { label: "Talento & I+D+i", desc: "Perfiles, formación docente, proyectos de investigación e innovación." },
+                    { label: "Alianzas", desc: "Entidades, empresas y redes de cooperación estratégica." },
+                  ].map((layer) => (
+                    <div key={layer.label} className="grid grid-cols-[100px_1fr] gap-2 items-start">
+                      <span className="text-[11px] font-semibold text-sena-blue">{layer.label}</span>
+                      <span className="text-[11px] text-muted-foreground">{layer.desc}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <p className="text-xs font-semibold text-sena-blue mb-1">Selector de direccionador</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Usa las pestañas superiores para filtrar el mapa por cada uno de los
+                  5 direccionadores estratégicos del área (D1–D5). Los colores de los
+                  nodos diferencian visualmente el estado de cada ítem.
+                </p>
+              </div>
+
+              <div>
+                <p className="text-xs font-semibold text-sena-blue mb-1">Exportar PDF</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  El botón <strong>Exportar PDF</strong> en la cabecera del mapa captura
+                  la vista actual y genera un documento A4 landscape listo para imprimir
+                  o compartir.
+                </p>
+              </div>
             </div>
           </section>
         </div>

@@ -1,7 +1,7 @@
 {
-  "name": "Radar Tecnológico Electricidad CEET",
-  "short_name": "Radar Tech",
-  "description": "Radar de vigilancia tecnológica del área de electricidad — CEET SENA 2025-2035",
+  "name": "Vigilancia Tecnológica CEET — Electricidad",
+  "short_name": "VT CEET Electricidad",
+  "description": "Plataforma de vigilancia científico-tecnológica del área de Electricidad del CEET — SENA. Integra el Radar Tecnológico y el Mapa de Trayectoria Tecnológica para el horizonte 2025-2035.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#F2F2F2",
