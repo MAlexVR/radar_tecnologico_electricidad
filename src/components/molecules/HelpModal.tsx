@@ -60,7 +60,7 @@ export function HelpModal({ open, onOpenChange }: HelpModalProps) {
             id="help-modal-description"
             className="text-sena-gray-dark/80 mt-1"
           >
-            Conceptos clave de la plataforma de Vigilancia Tecnológica CEET — Electricidad
+            Conceptos clave de la Plataforma de Vigilancia Tecnológica CEET
           </DialogDescription>
         </DialogHeader>
 
@@ -152,60 +152,88 @@ export function HelpModal({ open, onOpenChange }: HelpModalProps) {
           {/* Mapa de Trayectoria Tecnológica */}
           <section className="space-y-3">
             <h3 className="font-bold text-base text-sena-blue flex items-center gap-2">
-              <span className="bg-sena-green text-white rounded-sm w-7 h-7 font-bold text-xs flex items-center justify-center shrink-0">
-                ↗
+              <span className="bg-sena-blue text-white rounded-sm w-7 h-7 font-bold text-xs flex items-center justify-center shrink-0">
+                MT
               </span>
               Mapa de Trayectoria Tecnológica
             </h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              El <strong>Mapa de Trayectoria Tecnológica</strong> proyecta en el tiempo
-              (2025–2035) la evolución de las capacidades del área de Electricidad del CEET,
-              organizadas por direccionador estratégico y horizonte de adopción.
+              Visualiza la <strong>evolución de capacidades del área de Electricidad del CEET en el tiempo</strong>{" "}
+              (horizonte 2025-2035) organizada por direccionadores estratégicos (D1–D5) y
+              cuatro capas de acción.
             </p>
 
-            <div className="border border-sena-gray-light rounded-lg p-3 bg-sena-gray-light/20 space-y-3">
-              <div>
-                <p className="text-xs font-semibold text-sena-blue mb-1">Ejes del mapa</p>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  <strong>Eje X (tiempo):</strong> horizontes de adopción desde el presente
-                  (2025) hasta el largo plazo (2035).<br />
-                  <strong>Eje Y (capas):</strong> 4 dimensiones de capacidad institucional.
-                </p>
-              </div>
-
-              <div>
-                <p className="text-xs font-semibold text-sena-blue mb-1.5">Capas (swimlanes)</p>
-                <div className="grid gap-1.5">
-                  {[
-                    { label: "Tecnologías", desc: "Sistemas, equipos y soluciones tecnológicas por adoptar o desarrollar." },
-                    { label: "Infraestructura", desc: "Ambientes, laboratorios, plataformas y equipamiento de soporte." },
-                    { label: "Talento & I+D+i", desc: "Perfiles, formación docente, proyectos de investigación e innovación." },
-                    { label: "Alianzas", desc: "Entidades, empresas y redes de cooperación estratégica." },
-                  ].map((layer) => (
-                    <div key={layer.label} className="grid grid-cols-[100px_1fr] gap-2 items-start">
-                      <span className="text-[11px] font-semibold text-sena-blue">{layer.label}</span>
-                      <span className="text-[11px] text-muted-foreground">{layer.desc}</span>
-                    </div>
-                  ))}
+            {/* 4 capas */}
+            <div className="grid gap-2 border border-sena-gray-light rounded-lg p-3 bg-sena-gray-light/20">
+              <p className="text-xs font-semibold text-sena-blue mb-1">4 Capas de Acción</p>
+              {[
+                { code: "L1", label: "Tecnologías",      color: "#1565C0" },
+                { code: "L2", label: "Infraestructura",  color: "#2E7D32" },
+                { code: "L3", label: "Talento & I+D+i",  color: "#6A1B9A" },
+                { code: "L4", label: "Alianzas",         color: "#00838F" },
+              ].map((layer) => (
+                <div key={layer.code} className="flex items-center gap-2">
+                  <div
+                    className="w-4 h-4 rounded-sm shrink-0"
+                    style={{ backgroundColor: layer.color }}
+                  />
+                  <span className="text-xs font-semibold" style={{ color: layer.color }}>
+                    {layer.code}
+                  </span>
+                  <span className="text-xs text-muted-foreground">{layer.label}</span>
                 </div>
-              </div>
+              ))}
+            </div>
 
-              <div>
-                <p className="text-xs font-semibold text-sena-blue mb-1">Selector de direccionador</p>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  Usa las pestañas superiores para filtrar el mapa por cada uno de los
-                  5 direccionadores estratégicos del área (D1–D5). Los colores de los
-                  nodos diferencian visualmente el estado de cada ítem.
-                </p>
-              </div>
+            {/* Cómo usarlo */}
+            <div className="space-y-1.5 text-sm text-muted-foreground">
+              <p className="font-semibold text-sena-gray-dark text-xs">Cómo usarlo</p>
+              <ul className="space-y-1 text-xs list-none">
+                <li className="flex items-start gap-1.5">
+                  <span className="text-sena-green font-bold mt-0.5">→</span>
+                  <span>
+                    <strong>Abrir:</strong> haz clic en el botón{" "}
+                    <em>"Mapa de Trayectoria Tecnológica"</em> en el encabezado.
+                  </span>
+                </li>
+                <li className="flex items-start gap-1.5">
+                  <span className="text-sena-green font-bold mt-0.5">→</span>
+                  <span>
+                    <strong>Navegar:</strong> selecciona el direccionador estratégico (D1–D5)
+                    con los tabs superiores; las filas representan las capas de acción.
+                  </span>
+                </li>
+                <li className="flex items-start gap-1.5">
+                  <span className="text-sena-green font-bold mt-0.5">→</span>
+                  <span>
+                    <strong>Ver detalle:</strong> haz clic en cualquier nodo para abrir el
+                    panel de detalle con descripción, brecha y fuente GOR.
+                  </span>
+                </li>
+                <li className="flex items-start gap-1.5">
+                  <span className="text-sena-green font-bold mt-0.5">→</span>
+                  <span>
+                    <strong>Exportar PDF:</strong> usa el botón{" "}
+                    <em>"Exportar PDF"</em> para guardar el mapa actual.
+                  </span>
+                </li>
+              </ul>
+            </div>
 
-              <div>
-                <p className="text-xs font-semibold text-sena-blue mb-1">Exportar PDF</p>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  El botón <strong>Exportar PDF</strong> en la cabecera del mapa captura
-                  la vista actual y genera un documento A4 landscape listo para imprimir
-                  o compartir.
-                </p>
+            {/* Colores de brecha */}
+            <div className="grid gap-1.5 border border-sena-gray-light rounded-lg p-3 bg-sena-gray-light/20">
+              <p className="text-xs font-semibold text-sena-blue mb-1">Indicadores de Brecha</p>
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-red-700 shrink-0" />
+                <span className="text-xs text-muted-foreground">
+                  <strong>Crítica</strong> — capacidad ausente; acción inmediata requerida.
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-amber-500 shrink-0" />
+                <span className="text-xs text-muted-foreground">
+                  <strong>Alta</strong> — déficit significativo; planificación a corto plazo.
+                </span>
               </div>
             </div>
           </section>
