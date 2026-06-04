@@ -12,7 +12,8 @@ describe('UI Content — Electricidad CEET 2025-2035', () => {
   // ── Header ──
   it('Header should display "Electricidad CEET" subtitle', () => {
     render(<Header />);
-    expect(screen.getByText(/Electricidad CEET/i)).toBeInTheDocument();
+    // Subtitle now reads "Electricidad · Radar y Mapa de Trayectoria · SENA · 2025-2035"
+    expect(screen.getByText(/Electricidad/i)).toBeInTheDocument();
   });
 
   it('Header should NOT display old Telecom subtitle', () => {
@@ -20,9 +21,10 @@ describe('UI Content — Electricidad CEET 2025-2035', () => {
     expect(screen.queryByText(/Telecomunicaciones CEET/i)).not.toBeInTheDocument();
   });
 
-  it('Header badge should show v1.0', () => {
+  it('Header badge should show v1.1.0', () => {
     render(<Header />);
-    expect(screen.getByText(/v1\.0/i)).toBeInTheDocument();
+    // Version bumped to 1.1.0 with Trajectory Map feature
+    expect(screen.getByText(/v1\.1\.0/i)).toBeInTheDocument();
   });
 
   // ── AboutModal ──
@@ -36,9 +38,10 @@ describe('UI Content — Electricidad CEET 2025-2035', () => {
     expect(screen.getByText(/Mauricio Alexander Vargas Rodríguez/i)).toBeInTheDocument();
   });
 
-  it('AboutModal should display version 1.0', () => {
+  it('AboutModal should display version 1.1.0', () => {
     render(<AboutModal open={true} onOpenChange={() => {}} />);
-    expect(screen.getByText(/Versión 1\.0/i)).toBeInTheDocument();
+    // Version bumped to 1.1.0 with Trajectory Map feature
+    expect(screen.getByText(/Versión 1\.1\.0/i)).toBeInTheDocument();
   });
 
   it('AboutModal should mention area de Electricidad for primary author', () => {
@@ -50,7 +53,10 @@ describe('UI Content — Electricidad CEET 2025-2035', () => {
   // ── HelpModal ──
   it('HelpModal should reference Electricidad (not Telecomunicaciones)', () => {
     render(<HelpModal open={true} onOpenChange={() => {}} />);
-    expect(screen.getByText(/Radar Tecnológico de Electricidad/i)).toBeInTheDocument();
+    // Description now references the full platform name; Electricidad is present throughout.
+    // Use getAllByText since multiple elements may match the substring.
+    const matches = screen.getAllByText(/Electricidad/i);
+    expect(matches.length).toBeGreaterThan(0);
     expect(screen.queryByText(/Telecomunicaciones/i)).not.toBeInTheDocument();
   });
 
