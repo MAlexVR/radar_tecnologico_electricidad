@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import {
   Dialog,
   DialogContent,
@@ -7,7 +8,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import Image from "next/image";
+import { APP_VERSION } from "@/lib/version";
 
 interface AboutModalProps {
   open: boolean;
@@ -20,10 +21,13 @@ export function AboutModal({ open, onOpenChange }: AboutModalProps) {
       <DialogContent
         className="fixed inset-0 top-0 left-0 translate-x-0 translate-y-0 w-full h-[100dvh] max-w-none border-none rounded-none sm:bottom-auto sm:top-[50%] sm:left-[50%] sm:-translate-x-1/2 sm:-translate-y-1/2 sm:w-full sm:max-w-md sm:h-auto sm:max-h-[85vh] sm:border-solid sm:border sm:rounded-lg flex flex-col p-0 gap-0 overflow-hidden z-50"
         onInteractOutside={(e) => e.preventDefault()}
+        aria-describedby="about-modal-description"
       >
-        <DialogHeader className="sr-only">
-          <DialogTitle>Acerca de</DialogTitle>
-          <DialogDescription>Información del sistema</DialogDescription>
+        <DialogHeader className="px-5 py-4 border-b bg-muted/20 flex-none m-0">
+          <DialogTitle className="text-xl text-sena-blue">Acerca de</DialogTitle>
+          <DialogDescription id="about-modal-description" className="text-sena-gray-dark/80 mt-1">
+            Plataforma de Vigilancia Científico-Tecnológica CEET
+          </DialogDescription>
         </DialogHeader>
 
         <div className="flex-1 overflow-y-auto p-4 md:p-5 text-center space-y-4">
@@ -32,15 +36,18 @@ export function AboutModal({ open, onOpenChange }: AboutModalProps) {
             alt="GICS — CEET SENA"
             width={80}
             height={80}
-            className="w-auto h-20 mx-auto"
+            className="h-20 w-auto mx-auto"
           />
 
           <div>
             <h3 className="text-lg font-bold text-sena-blue tracking-tight">
               Vigilancia Tecnológica CEET
             </h3>
+            <p className="text-xs text-sena-blue/70 font-medium mt-0.5 leading-tight">
+              Radar Tecnológico · Mapa de Trayectoria
+            </p>
             <p className="text-xs text-sena-gray-dark font-medium mt-0.5">
-              Electricidad · Versión 1.1.0
+              Versión {APP_VERSION}
             </p>
           </div>
 
@@ -66,11 +73,12 @@ export function AboutModal({ open, onOpenChange }: AboutModalProps) {
           </div>
 
           <p className="text-[11px] text-sena-gray-dark leading-relaxed bg-sena-gray-light/20 px-3 py-3 rounded-xl border border-sena-gray-light/50">
-            Plataforma de vigilancia científico-tecnológica del área de Electricidad del
-            Centro de Electricidad, Electrónica y Telecomunicaciones (CEET — SENA). Integra
-            el <strong>Radar Tecnológico</strong> (madurez y adopción de tecnologías) y el{" "}
-            <strong>Mapa de Trayectoria Tecnológica</strong> (evolución de capacidades del
-            centro en el tiempo), para el horizonte 2025-2035.
+            Plataforma de vigilancia científico-tecnológica del área de
+            Electricidad del CEET — SENA. Integra el{" "}
+            <strong>Radar Tecnológico</strong> (madurez y adopción de tecnologías)
+            y el{" "}
+            <strong>Mapa de Trayectoria Tecnológica</strong> (evolución de
+            capacidades del centro en el tiempo), para el horizonte 2025-2035.
           </p>
 
           <div className="bg-sena-green/10 rounded-xl p-3 border border-sena-green/20 mt-2 text-left space-y-2">
@@ -97,7 +105,6 @@ export function AboutModal({ open, onOpenChange }: AboutModalProps) {
               width={100}
               height={40}
               className="h-10 w-auto grayscale opacity-80"
-            style={{ width: "auto" }}
             />
             <p className="text-[10px] text-sena-gray-dark font-medium mt-2">
               © {new Date().getFullYear()} SENA — Servicio Nacional de Aprendizaje.
