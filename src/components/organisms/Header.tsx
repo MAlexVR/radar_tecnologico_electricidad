@@ -48,7 +48,7 @@ export function Header() {
         {/* Acciones (derecha) — Desktop */}
         <div className="hidden md:flex items-center gap-2 shrink-0">
           <Badge className="bg-white/10 text-white/90 border-white/20 hover:bg-white/10 mr-1 select-none text-[10px]">
-            v1.1.0
+            v1.2.0
           </Badge>
 
           <button
@@ -115,7 +115,7 @@ export function Header() {
                 Vigilancia Tecnológica CEET
               </span>
               <Badge className="bg-white/10 text-white/80 border-white/20 hover:bg-white/10 select-none text-[10px]">
-                v1.1.0
+                v1.2.0
               </Badge>
             </div>
           </div>

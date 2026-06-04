@@ -1,6 +1,6 @@
 # Vigilancia Tecnológica CEET — Electricidad
 
-![Version](https://img.shields.io/badge/versión-1.1.0-39A900?style=flat-square)
+![Version](https://img.shields.io/badge/versión-1.2.0-39A900?style=flat-square)
 ![SENA](https://img.shields.io/badge/SENA-CEET-39A900?style=flat-square)
 ![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js)
 ![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react)
@@ -52,7 +52,7 @@ Visualización de la evolución proyectada de las capacidades del área de Elect
 
 - **Motor genérico reutilizable** (`src/lib/trajectory/`) — agnóstico al dominio, portable a otros centros
 - **5 direccionadores estratégicos** (D1–D5), seleccionables por pestañas
-- **~58 ítems** distribuidos en 4 capas × 5 horizontes, extraídos directamente del GOR-F-012 Electricidad
+- **75 ítems** distribuidos en 4 capas × 5 horizontes, extraídos del GOR-F-012 e investigación primaria colombiana
 - **Capas (swimlanes)**: Tecnologías · Infraestructura · Talento & I+D+i · Alianzas
 - **Horizontes**: Presente (2025) → Corto plazo → Mediano plazo (I) → Mediano plazo (II) → Largo plazo (2035)
 - Panel de detalle lateral al hacer clic en un ítem
@@ -183,6 +183,27 @@ public/
 ```
 
 ## Changelog
+
+### v1.2.0 — Cobertura completa del mapa (ítems del GOR + fuentes primarias colombianas) (2026)
+
+- **Cobertura completa ALTA + MEDIA**: añadidos 17 ítems faltantes identificados en auditoría contra el GOR-F-012
+- **Hidrógeno verde y geotermia** (D1/L3): módulo formativo con fundamento en Ley 2099/2021, Decreto 895/2022 y Hoja de Ruta del Hidrógeno Colombia 2022 (MinEnergía-BID); potencial geotérmico SGC 1.170 MW
+- **Domótica y hogares inteligentes** (D4/L3): L16 TRL 9 ADOPTAR — KNX, Matter/Thread, Zigbee, integración BEMS; horizonte "ahora"
+- **NILM — Monitoreo No Intrusivo de Cargas** (D4/L3): L17 — disaggregación de carga, FHMM, aplicación a auditorías energéticas
+- **Infraestructura de carga AC Nivel 2 OCPP** (D4/L2): Ley 1964/2019, OCPP 2.0.1, Res. 40123/2024 MinEnergía; simulador EV/V2G
+- **Interoperabilidad y regulación basada en desempeño** (D5/L3 ×2): LT5.2 (IEC 61968/61970 CIM, IEEE 2030.5) y LT5.5 (PBR, SAIDI/SAIFI, CREG incentivos) — brechas críticas slide 10
+- **Mercados de energía transactiva y P2P** (D3/L3): LT3.4 — CREG programa transitorio demanda 2024, XM
+- **Coordinación TSO-DSO** (D3/L3): marco en desarrollo Colombia; flujos bidireccionales TSO-DSO
+- **Precios dinámicos y MRV energético** (D5/L3): LT5.4 — TOU/RTP/CPP; IPMVP, ISO 50015
+- **Protección adaptativa de microrredes** (D1/L3): IEEE 2030.7, GOOSE IEC 61850
+- **Energía comunitaria y cooperativas** (D1/L3): L04 — AGPE, CREG 030/2018, Ley 2099/2021
+- **Aliado SEL University** (D1/L4): cursos eCOM 202 (IEC 61850) y COM 401 — fundamento Tabla 11 fila 4
+- **Aliado ABB — relés REF615 + PCM600** (D2/L4): Tabla 11 fila 2; marcado como sugerida
+- **Aliado UNAL Grupo EMC-UN** (D4/L4): inteligencia computacional aplicada al sector eléctrico (Prof. Sergio Raúl Rivera)
+- **Aliado OpenADR Alliance** (D3/L4): organismo de certificación OpenADR 2.0/3.0; primeras certificaciones v3.0 marzo 2025
+- **Aliado IEEE PES Colombia** (D5/L4): capítulo profesional activo; Encuentro PES 2024; capítulos Uniandes y U. Distrital
+- **Matriz de cobertura actualizada**: 57 ítems L2-L4 (vs. 40 antes), 75 total (vs. 58)
+- **Version bump**: 1.1.0 → 1.2.0
 
 ### v1.1.0 — Mapa de Trayectoria Tecnológica (2026)
 

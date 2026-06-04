@@ -21,10 +21,10 @@ describe('UI Content — Electricidad CEET 2025-2035', () => {
     expect(screen.queryByText(/Telecomunicaciones CEET/i)).not.toBeInTheDocument();
   });
 
-  it('Header badge should show v1.1.0', () => {
+  it('Header badge should show v1.2.0', () => {
     render(<Header />);
-    // Version bumped to 1.1.0 with Trajectory Map feature
-    expect(screen.getByText(/v1\.1\.0/i)).toBeInTheDocument();
+    // Version bumped to 1.2.0 with full GOR coverage + Colombian primary sources research
+    expect(screen.getByText(/v1\.2\.0/i)).toBeInTheDocument();
   });
 
   // ── AboutModal ──
@@ -38,10 +38,10 @@ describe('UI Content — Electricidad CEET 2025-2035', () => {
     expect(screen.getByText(/Mauricio Alexander Vargas Rodríguez/i)).toBeInTheDocument();
   });
 
-  it('AboutModal should display version 1.1.0', () => {
+  it('AboutModal should display version 1.2.0', () => {
     render(<AboutModal open={true} onOpenChange={() => {}} />);
-    // Version bumped to 1.1.0 with Trajectory Map feature
-    expect(screen.getByText(/Versión 1\.1\.0/i)).toBeInTheDocument();
+    // Version bumped to 1.2.0 with full GOR coverage + Colombian primary sources research
+    expect(screen.getByText(/Versión 1\.2\.0/i)).toBeInTheDocument();
   });
 
   it('AboutModal should mention area de Electricidad for primary author', () => {

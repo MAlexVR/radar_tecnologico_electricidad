@@ -1,6 +1,6 @@
 {
   "name": "radar-tecnologico-electricidad",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Plataforma de vigilancia científico-tecnológica del área de Electricidad del CEET — SENA. Integra el Radar Tecnológico y el Mapa de Trayectoria Tecnológica para el horizonte 2025-2035.",
   "private": true,
   "scripts": {
