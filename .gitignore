@@ -46,3 +46,6 @@ next-env.d.ts
 !postcss.config.js
 !next.config.js
 !public/manifest.json
+
+# Documentos fuente (no versionados)
+/docs
