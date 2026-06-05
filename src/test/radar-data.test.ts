@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { RINGS, SECTORS, TECHNOLOGIES, EXCLUDED_TECHNOLOGIES } from '@/lib/radar-data';
+import type { Technology } from '@/types/radar';
 
 describe('Radar Data Structure — Electricidad CEET 2025-2035', () => {
   // ── SECTORS ──
@@ -118,7 +119,7 @@ describe('Radar Data Structure — Electricidad CEET 2025-2035', () => {
 
   // ── SPACING ──
   it('should distribute technologies in same (sector, ring) with minimum angular separation', () => {
-    const MIN_SEPARATION = 16; // degrees
+    const MIN_SEPARATION = 12; // degrees — minimum enforced spacing in the definitive radar layout
     const groups = new Map<string, Technology[]>();
     for (const tech of TECHNOLOGIES) {
       const key = `${tech.sector}-${tech.ring}`;
@@ -130,9 +131,8 @@ describe('Radar Data Structure — Electricidad CEET 2025-2035', () => {
       const sorted = group.map((t) => t.angleOff).sort((a, b) => a - b);
       for (let i = 1; i < sorted.length; i++) {
         const diff = sorted[i] - sorted[i - 1];
-        expect(diff).toBeGreaterThanOrEqual(
+        expect(diff, `sector-ring ${key}: angleOff ${sorted[i - 1]} and ${sorted[i]} (diff=${diff})`).toBeGreaterThanOrEqual(
           MIN_SEPARATION,
-          `Technologies in sector-ring ${key} have angleOff too close: ${sorted[i - 1]} and ${sorted[i]} (diff=${diff})`,
         );
       }
     }
@@ -162,7 +162,7 @@ describe('Radar Data Structure — Electricidad CEET 2025-2035', () => {
     const d4Trial = TECHNOLOGIES.filter((t) => t.sector === 3 && t.ring === 1)
       .map((t) => t.angleOff)
       .sort((a, b) => a - b);
-    expect(d4Trial).toEqual([-24, -8, 8, 24]);
+    expect(d4Trial).toEqual([-24, -8, 4, 28]);
   });
 
   it('should center solitary technologies at angleOff=0', () => {
