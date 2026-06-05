@@ -52,19 +52,19 @@ export function Header() {
           </Badge>
 
           <button
-            onClick={() => setShowTrajectory(true)}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm text-white/90 hover:text-white hover:bg-white/10 transition-colors font-medium"
-          >
-            <Route size={16} />
-            <span>Mapa de Trayectoria Tecnológica</span>
-          </button>
-
-          <button
             onClick={() => setShowHelp(true)}
             className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm text-white/90 hover:text-white hover:bg-white/10 transition-colors font-medium"
           >
             <HelpCircle size={16} />
             <span>Ayuda</span>
+          </button>
+
+          <button
+            onClick={() => setShowTrajectory(true)}
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm text-white/90 hover:text-white hover:bg-white/10 transition-colors font-medium"
+          >
+            <Route size={16} />
+            <span>Mapa de Trayectoria Tecnológica</span>
           </button>
 
           <button
@@ -93,16 +93,16 @@ export function Header() {
         <div className="md:hidden bg-sena-green border-t border-white/20 mt-3 pt-2 animate-in slide-in-from-top-2">
           <div className="space-y-1">
             <button
-              onClick={() => { setShowTrajectory(true); setMobileMenuOpen(false); }}
-              className="flex items-center gap-2 w-full px-3 py-2.5 rounded-lg text-sm font-medium text-white/90 hover:bg-white/10 transition-colors"
-            >
-              <Route size={18} className="text-white/70" /> Mapa de Trayectoria Tecnológica
-            </button>
-            <button
               onClick={() => { setShowHelp(true); setMobileMenuOpen(false); }}
               className="flex items-center gap-2 w-full px-3 py-2.5 rounded-lg text-sm font-medium text-white/90 hover:bg-white/10 transition-colors"
             >
               <HelpCircle size={18} className="text-white/70" /> Ayuda
+            </button>
+            <button
+              onClick={() => { setShowTrajectory(true); setMobileMenuOpen(false); }}
+              className="flex items-center gap-2 w-full px-3 py-2.5 rounded-lg text-sm font-medium text-white/90 hover:bg-white/10 transition-colors"
+            >
+              <Route size={18} className="text-white/70" /> Mapa de Trayectoria Tecnológica
             </button>
             <button
               onClick={() => { setShowAbout(true); setMobileMenuOpen(false); }}
